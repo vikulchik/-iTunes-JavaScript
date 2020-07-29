@@ -1,3 +1,6 @@
+let prevVolumeSlider = 0;
+let prevVolumeSound = 0;
+
 export const videoPlayerInit = () => {
     const videoPlayer = document.querySelector('.video-player');
     const videoButtonPlay = document.querySelector('.video-button__play');
@@ -88,9 +91,13 @@ export const videoPlayerInit = () => {
 
     volumeDown.addEventListener('click', () => {
         if(videoPlayer.volume > 0) {
+            prevVolumeSound = videoPlayer.volume; // Old player volume value
+            prevVolumeSlider = videoVolume.value; // Old slider position value
             videoPlayer.volume = 0;
+            videoVolume.value = 0;
         } else {
-            videoPlayer.volume = videoVolume.value / 100;
+            videoPlayer.volume = prevVolumeSound;
+            videoVolume.value = prevVolumeSlider;
         }
         toggleIconVolume(videoPlayer.volume)
     })
