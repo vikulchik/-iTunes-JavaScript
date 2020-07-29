@@ -7,6 +7,7 @@ export const videoPlayerInit = () => {
     const videoTimeTotal = document.querySelector('.video-time__total');
     const videoVolume = document.querySelector('.video-volume');
     const videoFullScreen  = document.querySelector('.video-fullscreen');
+    const volumeDown = document.querySelector('.volume-down');
 
     const toggleIcon = () => {
         if(videoPlayer.paused) {
@@ -34,6 +35,20 @@ export const videoPlayerInit = () => {
     };
 
     const addZero = n => n < 10 ? '0' + n : n;
+
+    const toggleIconVolume = (volume) => {
+        if(volume === 0) {
+            volumeDown.classList.remove('fa-volume-down');
+            volumeDown.classList.add('fa-volume-off');
+        } else {
+            volumeDown.classList.add('fa-volume-down');
+            volumeDown.classList.remove('fa-volume-off');
+        }
+    };
+
+    // const radioMute = () => {
+    //
+    // };
 
     videoPlayer.addEventListener('click', togglePlay);
     videoButtonPlay.addEventListener('click', togglePlay);
@@ -68,10 +83,20 @@ export const videoPlayerInit = () => {
 
     videoVolume.addEventListener('input', () => {
         videoPlayer.volume = videoVolume.value / 100;
+        toggleIconVolume(videoPlayer.volume)
     });
 
     videoFullScreen.addEventListener('click', () => {
         videoPlayer.webkitEnterFullScreen();
+    });
+
+    volumeDown.addEventListener('click', () => {
+        if(videoPlayer.volume > 0) {
+            videoPlayer.volume = 0;
+        } else {
+            videoPlayer.volume = videoVolume.value / 100;
+        }
+        toggleIconVolume(videoPlayer.volume)
     })
 
 };
