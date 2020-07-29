@@ -46,10 +46,6 @@ export const videoPlayerInit = () => {
         }
     };
 
-    // const radioMute = () => {
-    //
-    // };
-
     videoPlayer.addEventListener('click', togglePlay);
     videoButtonPlay.addEventListener('click', togglePlay);
 
@@ -83,7 +79,6 @@ export const videoPlayerInit = () => {
 
     videoVolume.addEventListener('input', () => {
         videoPlayer.volume = videoVolume.value / 100;
-        toggleIconVolume(videoPlayer.volume)
     });
 
     videoFullScreen.addEventListener('click', () => {
