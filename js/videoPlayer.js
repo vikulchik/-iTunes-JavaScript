@@ -79,6 +79,7 @@ export const videoPlayerInit = () => {
 
     videoVolume.addEventListener('input', () => {
         videoPlayer.volume = videoVolume.value / 100;
+        toggleIconVolume(videoPlayer.volume)
     });
 
     videoFullScreen.addEventListener('click', () => {
