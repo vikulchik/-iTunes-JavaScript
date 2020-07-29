@@ -5,11 +5,14 @@ export const radioPlayerInit = () => {
     const radioItem = document.querySelectorAll('.radio-item');
     const radioHeaderBig = document.querySelector('.radio-header__big');
     const radioStop = document.querySelector('.radio-stop');
+    const volumeSection = document.querySelector('.volume-section');
+    const radioVolume = document.querySelector('.radio-volume');
 
     const audio = new Audio();
     audio.type = 'audio/aac';
 
     radioStop.disabled = true;
+    volumeSection.classList.add('volume-hidden');
 
     const changeIconPlay = () => {
         if(audio.paused) {
@@ -38,6 +41,8 @@ export const radioPlayerInit = () => {
         radioHeaderBig.textContent = title;
         radioStop.disabled = false;
         audio.src = target.dataset.radioStantion;
+
+        volumeSection.classList.remove('volume-hidden');
 
         audio.play();
         changeIconPlay();
