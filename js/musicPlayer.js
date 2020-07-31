@@ -96,10 +96,6 @@ export const musicPlayerInit = () => {
         audioTimeTotal.textContent = `${addZero(minutesTotal)}:${addZero(secondsTotal)}`;
     });
 
-    audioPlayer.addEventListener('durationchange', (evt) => {
-        console.log(evt);
-    });
-
     audioProgress.addEventListener('click', event => {
         const x = event.offsetX;
         const allWidth = audioProgress.clientWidth;
