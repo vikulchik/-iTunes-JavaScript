@@ -1,5 +1,4 @@
-let prevVolumeSlider = 0;
-let prevVolumeSound = 0;
+import { addZero } from "./supScript.js";
 
 export const videoPlayerInit = () => {
     const videoPlayer = document.querySelector('.video-player');
@@ -11,6 +10,9 @@ export const videoPlayerInit = () => {
     const videoVolume = document.querySelector('.video-volume');
     const videoFullScreen  = document.querySelector('.video-fullscreen');
     const volumeDown = document.querySelector('.volume-down');
+
+    let prevVolumeSlider = 0;
+    let prevVolumeSound = 0;
 
     const toggleIcon = () => {
         if(videoPlayer.paused) {
@@ -36,8 +38,6 @@ export const videoPlayerInit = () => {
         videoPlayer.pause();
         videoPlayer.currentTime = 0;
     };
-
-    const addZero = n => n < 10 ? '0' + n : n;
 
     const toggleIconVolume = (volume) => {
         if(volume === 0) {
@@ -91,8 +91,8 @@ export const videoPlayerInit = () => {
 
     volumeDown.addEventListener('click', () => {
         if(videoPlayer.volume > 0) {
-            prevVolumeSound = videoPlayer.volume; // Old player volume value
-            prevVolumeSlider = videoVolume.value; // Old slider position value
+            prevVolumeSound = videoPlayer.volume;
+            prevVolumeSlider = videoVolume.value;
             videoPlayer.volume = 0;
             videoVolume.value = 0;
         } else {
@@ -101,5 +101,5 @@ export const videoPlayerInit = () => {
         }
         toggleIconVolume(videoPlayer.volume)
     })
-
+    
 };
